@@ -1,5 +1,5 @@
 /*
- * Release Version 1.1
+ * Release Version 1.2
  * Coded by cacabish. Please do not claim as your own.
  */
 
@@ -19,13 +19,11 @@ start {
 
 split {
 	if (!old.levelComplete && current.levelComplete) {
-		if (settings.SplitEnabled) {
-			if (settings["levelSplit"]) {
-				return true;
-			}
-			else {
-				return current.levelNumber == 19;
-			}
+		if (settings["levelSplit"]) {
+			return true;
+		}
+		else {
+			return current.levelNumber == 19;
 		}
 	}
 }
@@ -35,7 +33,7 @@ reset {
 }
 
 update {
-	if (old.levelTime > 0 && current.levelTime == 0) {
+	if (current.levelTime < old.levelTime) {
 		vars.gameTime += TimeSpan.FromMilliseconds(old.levelTime);
 	}
 }
